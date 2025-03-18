@@ -44,7 +44,8 @@ class WebViewController: UIViewController {
         NSLayoutConstraint.activate([
             webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: margin),
             webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -margin),
-            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: margin),
+//            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: margin),
+            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: margin),
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -margin)
         ])
 
@@ -54,6 +55,15 @@ class WebViewController: UIViewController {
             return
         }
         webView.load(URLRequest(url: url))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            print("height")
+            print(self.webView.frame.height)
+            print("width")
+            print(self.webView.frame.width)
+        }
+        
+
     }
 }
 
