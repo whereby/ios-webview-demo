@@ -32,22 +32,38 @@ class WebViewController: UIViewController {
         config.mediaTypesRequiringUserActionForPlayback = []
         
         // Initialize the WKWebView with the custom configuration and delegate:
-        webView = WKWebView(frame: .zero, configuration: config)
+//        webView = WKWebView(frame: .zero, configuration: config)
+        
+        let width: CGFloat = 402
+        let height: CGFloat = 700
+        
+        // width fixed to 402.
+        // if height > 800 : bug
+        // if height < 700 : no bug
+        webView = WKWebView(frame: CGRect(x: 0, y: 0, width: width, height: height), configuration: config)
         webView.uiDelegate = self
         
         // Add the webView to the view hierarchy:
         view.addSubview(webView)
         
         // Apply constraints to the webView (margin = 0 means full screen):
-        let margin: CGFloat = 0
+//        let margin: CGFloat = 0
+//        webView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: margin),
+//            webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -margin),
+////            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: margin),
+//            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: margin),
+//            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -margin)
+//        ])
+        
         webView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: margin),
-            webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -margin),
-//            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: margin),
-            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: margin),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -margin)
-        ])
+            NSLayoutConstraint.activate([
+                webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                webView.widthAnchor.constraint(equalToConstant: width),
+                webView.heightAnchor.constraint(equalToConstant: height)
+            ])
 
         // Load the WebView:
         guard let url = url else {

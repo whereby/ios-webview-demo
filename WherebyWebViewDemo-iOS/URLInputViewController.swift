@@ -9,7 +9,11 @@ import UIKit
 
 class URLInputViewController: UIViewController {
     
-    @IBOutlet private weak var urlInputTextField: UITextField!
+    @IBOutlet private weak var urlInputTextField: UITextField! {
+        didSet {
+            urlInputTextField.text = "https://team.whereby.com/remi-quinto"
+        }
+    }
     
     @IBAction private func didPressLoadWebViewButton(_ sender: UIButton) {
         loadWebView()
