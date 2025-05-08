@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, WKNavigationDelegate {
     
     internal var url: URL!
     
@@ -34,6 +34,7 @@ class WebViewController: UIViewController {
         // Initialize the WKWebView with the custom configuration and delegate:
         webView = WKWebView(frame: .zero, configuration: config)
         webView.uiDelegate = self
+        webView.navigationDelegate = self
         
         // Add the webView to the view hierarchy:
         view.addSubview(webView)
